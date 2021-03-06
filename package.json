@@ -1,0 +1,9 @@
+{
+  "name": "mood-tracker",
+  "type": "module",
+  "version": "1.0.0",
+  "repository": "git@github.com:Continuities/mood-tracker.git",
+  "author": "Michael Townsend <michael@doublespeakgames.com>",
+  "license": "MIT",
+  "private": true
+}
