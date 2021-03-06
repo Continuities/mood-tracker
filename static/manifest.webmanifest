@@ -1,0 +1,8 @@
+{
+  "name": "Mood Tracker",
+  "short_name": "Mood Tracker",
+  "start_url": "https://mood.itsmichael.info/index.html",
+  "display": "fullscreen",
+  "background_color": "#fff",
+  "description": "Tracking Michael's moods"
+}

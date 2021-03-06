@@ -5,5 +5,33 @@
   "repository": "git@github.com:Continuities/mood-tracker.git",
   "author": "Michael Townsend <michael@doublespeakgames.com>",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "scripts": {
+    "start": "webpack serve --config webpack.config.cjs --mode development --devtool inline-source-map --hot $EXTRA_WEBPACK_DEV_SERVER_ARGS",
+    "build": "webpack --config webpack.config.cjs --mode=production"
+  },
+  "dependencies": {
+    "@babel/core": "^7.13.8",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/preset-env": "^7.13.9",
+    "@babel/preset-flow": "^7.12.13",
+    "@babel/preset-react": "^7.12.13",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-transform-imports": "^2.0.0",
+    "clsx": "^1.1.1",
+    "copy-webpack-plugin": "^8.0.0",
+    "css-loader": "^5.1.1",
+    "eslint": "^7.21.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-flowtype": "^5.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "flow-bin": "^0.146.0",
+    "html-webpack-plugin": "^5.2.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "webpack": "^5.24.3",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
+  }
 }

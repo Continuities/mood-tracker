@@ -1,0 +1,11 @@
+[ignore]
+*.cjs
+
+[include]
+
+[libs]
+./flow-typed
+
+[options]
+
+[strict]
