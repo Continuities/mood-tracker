@@ -16,7 +16,10 @@ module.exports = {
       use: ["style-loader", "css-loader"]
     }]
   },
-  resolve: { extensions: ["*", ".js", ".jsx"] },
+  resolve: { 
+    extensions: ["*", ".js", ".jsx"],
+    modules: ["src", "node_modules"],
+  },
   output: {
     path: path.resolve(__dirname, "dist/"),
     publicPath: "/",
