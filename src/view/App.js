@@ -10,6 +10,7 @@ import { Router } from "@reach/router"
 import RecordMood from 'view/RecordMood.js';
 import Dashboard from 'view/Dashboard.js';
 import DatabaseProvider from 'providers/DatabaseProvider.js';
+import { DatabaseConfig } from 'config.js';
 
 const GoogleConfig = {
   client_id: '588132758538-05f4gumqggpruamsrmmolo14av3072af.apps.googleusercontent.com',
@@ -26,8 +27,8 @@ const createDatabaseSchema = (db, currentVersion) => {
 const App = (): React$Node => {
   return (
     <DatabaseProvider 
-      name='mood-tracker' 
-      version={1}
+      name={DatabaseConfig.database}
+      version={DatabaseConfig.version}
       createSchema={createDatabaseSchema}
     >
       <Router>
