@@ -33,7 +33,8 @@ const App = (): React$Node => {
     >
       <Router>
         <Dashboard config={GoogleConfig} path="/" />
-        <RecordMood path="/mood/:value" />
+        {/* $FlowIgnore[prop-missing] Let it have path */}
+        <RecordMood path="/mood" />
       </Router>
     </DatabaseProvider>
   );

@@ -1,36 +1,63 @@
 /**
- * View that records a mood parameter
+ * View that lets a user record their mood
  * @author mtownsend
  * @since March 08, 2021
  * @flow
  **/
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useAdd } from 'providers/DatabaseProvider.js';
+import { Typography, Box, Button, ButtonGroup } from '@material-ui/core';
+import styled from 'styled-components';
 
-type Props = {|
-  value?: string,
-  path?: string
-|};
+// const ButtonList = styled.ul`
+//   padding: 0;
+//   margin: 0;
+//   list-style: none;
+//   display: flex;
+//   font-size: 48px;
+// `;
 
-const RecordMood = ({ value }: Props) => {
-  const [ message, setMessage ] = useState('idle...');
+const Page = styled(Box)`
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+type SubmissionState = 'idle' | 'submitting' | 'complete';
+
+const RecordMood = () => {
+  const [ state, setState ] = useState<SubmissionState>('idle');
   const add = useAdd('mood');
 
-  useEffect(() => {
-    value && add({
+  const submit = value => async () => {
+    setState('submitting');
+    await add({
       timestamp: new Date().getTime(),
       mood: value
-    })
-      .then(() => setMessage(`Added mood ${value}`))
-      .catch(err => {
-        console.log(err);
-        setMessage('err');
-      });
-  }, [ add, value ]);
+    });
+    setState('complete');
+  };
+
+  const disabled = state !== 'idle';
 
   return (
-    <div>{message}</div>
+    <Page>
+      <Typography variant="h4">
+        {state === 'complete' ? 'Thanks!' : 'How was today?'}
+      </Typography>
+      {state !== 'complete' && (
+        <ButtonGroup size='large'>
+          <Button disabled={disabled} onClick={submit(5)}>😀</Button>
+          <Button disabled={disabled} onClick={submit(4)}>😊</Button>
+          <Button disabled={disabled} onClick={submit(3)}>😐</Button>
+          <Button disabled={disabled} onClick={submit(2)}>🙁</Button>
+          <Button disabled={disabled} onClick={submit(1)}>😩</Button>
+        </ButtonGroup>
+      )}
+    </Page>
   );
 };
 

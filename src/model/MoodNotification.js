@@ -13,8 +13,9 @@ type ActionConfig = {|
 |};
 
 export type NotificationType = {|
-  scheduledTime?: Date,
   title: string,
+  url: string,
+  scheduledTime?: Date,
   badge?: string,
   icon?: string,
   actions?: Array<ActionConfig>
@@ -28,23 +29,8 @@ const getNextTime = () => {
 
 const MoodNotification = (sendNow:boolean = false): NotificationType => ({
   title: NotificationConfig.title,
-  scheduledTime: sendNow ? undefined : getNextTime(),
-  actions: [{
-    action: '1',
-    title: '☹️'
-  }, {
-    action: '2',
-    title: '🙁'
-  }, {
-    action: '3',
-    title: '😐'
-  }, {
-    action: '4',
-    title: '🙂'
-  }, {
-    action: '5',
-    title: '😀'
-  }]
+  url: `${(typeof window === 'undefined' ? self : window).location.origin}/mood`,
+  scheduledTime: sendNow ? undefined : getNextTime()
 });
 
 export default MoodNotification;

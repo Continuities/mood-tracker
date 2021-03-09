@@ -29,7 +29,10 @@ const useNotifications = (registration?:ServiceWorkerRegistration): (config:Noti
       showTrigger: config.scheduledTime ? new TimestampTrigger(config.scheduledTime.getTime()) : undefined,
       badge: config.badge,
       icon: config.icon,
-      actions: config.actions
+      actions: config.actions,
+      data: { 
+        url: config.url
+      }
     });
   };
 };
