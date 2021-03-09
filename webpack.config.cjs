@@ -4,7 +4,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: {
+    "app": "./src/index.js",
+    "service-worker": "./src/service-worker.js"
+  },
   mode: "development",
   module: {
     rules: [{
@@ -23,7 +26,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist/"),
     publicPath: "/",
-    filename: "bundle.js"
+    filename: "[name].js"
   },
   devServer: {
     host: '0.0.0.0',
@@ -37,13 +40,11 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "static", "index.html"),
-      filename: 'index.html'
+      filename: 'index.html',
+      excludeChunks: [ 'service-worker' ]
     }),
     new CopyPlugin({
       patterns: [{ 
-        from: 'static/firebase-message-sw.js',
-        to: 'static'
-      }, { 
         from: 'static/manifest.webmanifest',
         to: 'static'
       }]
